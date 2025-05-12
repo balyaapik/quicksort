@@ -3,28 +3,28 @@ import matplotlib.pyplot as plt
 import random
 import time
 
-# Fungsi untuk menampilkan array dengan warna berdasarkan peran indeks
+# Fungsi untuk menampilkan array sebagai bar chart dengan warna indikator
 def plot_array(arr, pivot_idx=None, i_idx=None, j_idx=None):
     colors = []
     for idx in range(len(arr)):
         if idx == pivot_idx:
-            colors.append("red")     # Pivot
+            colors.append("red")     # pivot
         elif idx == j_idx:
-            colors.append("yellow")  # J
+            colors.append("yellow")  # j
         elif idx == i_idx:
-            colors.append("green")   # I
+            colors.append("green")   # i
         else:
-            colors.append("blue")    # Default
+            colors.append("blue")    # lainnya
     fig, ax = plt.subplots()
     ax.bar(range(len(arr)), arr, color=colors)
     st.pyplot(fig)
     plt.close(fig)
 
-# Fungsi swap
+# Fungsi untuk menukar elemen
 def swap(arr, i, j):
     arr[i], arr[j] = arr[j], arr[i]
 
-# Algoritma QuickSort dengan visualisasi
+# QuickSort dengan visualisasi
 def quick_sort_visual(arr, kiri, kanan, delay):
     if kiri >= kanan:
         return
@@ -60,11 +60,8 @@ kecepatan = st.slider("Kecepatan Animasi (detik)", 0.1, 1.0, 0.5, step=0.1)
 if st.button("Mulai Visualisasi"):
     arr = random.sample(range(1, 100), array_size)
     st.write("📦 Array Awal:", arr)
-    
-    # Set kecepatan global
-    time.sleep = lambda x: time.sleep(kecepatan)
-    
-    quick_sort_visual(arr, 0, len(arr) - 1)
-    
+
+    quick_sort_visual(arr, 0, len(arr) - 1, kecepatan)
+
     st.success("✅ QuickSort selesai!")
     st.write("📈 Array Terurut:", arr)
