@@ -25,7 +25,7 @@ def swap(arr, i, j):
     arr[i], arr[j] = arr[j], arr[i]
 
 # Algoritma QuickSort dengan visualisasi
-def quick_sort_visual(arr, kiri, kanan):
+def quick_sort_visual(arr, kiri, kanan, delay):
     if kiri >= kanan:
         return
 
@@ -35,21 +35,21 @@ def quick_sort_visual(arr, kiri, kanan):
 
     for j in range(kiri, kanan):
         plot_array(arr, pivot_idx=pivot_idx, i_idx=i, j_idx=j)
-        time.sleep(0.5)
+        time.sleep(delay)
 
         if arr[j] <= pivot:
             i += 1
             swap(arr, i, j)
             plot_array(arr, pivot_idx=pivot_idx, i_idx=i, j_idx=j)
-            time.sleep(0.5)
+            time.sleep(delay)
 
     swap(arr, i + 1, kanan)
     partisi = i + 1
     plot_array(arr, pivot_idx=partisi)
-    time.sleep(0.5)
+    time.sleep(delay)
 
-    quick_sort_visual(arr, kiri, partisi - 1)
-    quick_sort_visual(arr, partisi + 1, kanan)
+    quick_sort_visual(arr, kiri, partisi - 1, delay)
+    quick_sort_visual(arr, partisi + 1, kanan, delay)
 
 # Streamlit UI
 st.title("🔀 Visualisasi QuickSort Interaktif")
